@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:photofilters/models.dart';
-import 'package:photofilters/utils/utils.dart' as imageUtils;
+import 'package:photofilters/utils/utils.dart' as image_utils;
 
 int clampPixel(int x) => x.clamp(0, 255);
 RGBA saturation(RGBA color, num saturation) {
@@ -93,9 +93,9 @@ RGBA brightness(RGBA color, num adj) {
 
 // Better result (slow) - adj should be < 1 (desaturated) to 1 (unchanged) and < 1
 RGBA hueSaturation(RGBA color, num adj) {
-  final hsv = imageUtils.rgbToHsv(color.red, color.green, color.blue);
+  final hsv = image_utils.rgbToHsv(color.red, color.green, color.blue);
   hsv[1] = (hsv[1] ?? 0) * adj;
-  final rgb = imageUtils.hsvToRgb(hsv[0]!, hsv[1]!, hsv[2]!);
+  final rgb = image_utils.hsvToRgb(hsv[0]!, hsv[1]!, hsv[2]!);
   return RGBA(
     red: clampPixel(rgb[0] as int),
     green: clampPixel(rgb[1] as int),
